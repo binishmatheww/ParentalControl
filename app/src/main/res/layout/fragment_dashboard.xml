@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.DashboardFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/topBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="4dp"
+                app:cardMaxElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="54dp">
+
+
+                    <ImageView
+                        android:id="@+id/profileIcon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/icon_profile"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/profileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text="Michael"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/profileIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/settingsIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/icon_settings"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dashboardLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+                <TextView
+                    android:id="@+id/dashboardLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/euclid_circular_b_bold"
+                    android:text="Dashboard"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/dashboardChart"
+                    android:layout_width="177dp"
+                    android:layout_height="177dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dashboardLabel" />
+
+                <TextView
+                    android:id="@+id/dashboardChartLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/red_hat_display_bold"
+                    android:text="Total"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/dashboardChartDivider"
+                    app:layout_constraintEnd_toEndOf="@+id/dashboardChart"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/dashboardChart" />
+
+                <View
+                    android:id="@+id/dashboardChartDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/dashboardChart"
+                    app:layout_constraintEnd_toEndOf="@+id/dashboardChart"
+                    app:layout_constraintStart_toStartOf="@+id/dashboardChart"
+                    app:layout_constraintTop_toTopOf="@+id/dashboardChart">
+
+                </View>
+
+                <TextView
+                    android:id="@+id/dashboardChartDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoe_ui"
+                    android:textColor="@color/black"
+                    android:textSize="27sp"
+                    app:layout_constraintEnd_toEndOf="@+id/dashboardChart"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/dashboardChart"
+                    app:layout_constraintTop_toBottomOf="@+id/dashboardChartDivider" />
+
+                <LinearLayout
+                    android:id="@+id/dashboardLegend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="44dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dashboardChart">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/classLegend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/classCircle"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/icon_circle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/class_chart_color" />
+
+                        <TextView
+                            android:id="@+id/classTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="Class"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/classCircle"
+                            app:layout_constraintTop_toTopOf="@+id/classCircle" />
+
+                        <TextView
+                            android:id="@+id/classDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/red_hat_display_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="@+id/classTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/classTitle" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/studyLegend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="28dp">
+
+                        <ImageView
+                            android:id="@+id/studyCircle"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/icon_circle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/study_chart_color" />
+
+                        <TextView
+                            android:id="@+id/studyTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="Study"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/studyCircle"
+                            app:layout_constraintTop_toTopOf="@+id/studyCircle" />
+
+                        <TextView
+                            android:id="@+id/studyDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/red_hat_display_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="@+id/studyTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/studyTitle" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/freeTimeLegend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="28dp">
+
+                        <ImageView
+                            android:id="@+id/freeTimeCircle"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/icon_circle"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/free_time_chart_color" />
+
+                        <TextView
+                            android:id="@+id/freeTimeTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="Free-time"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/freeTimeCircle"
+                            app:layout_constraintTop_toTopOf="@+id/freeTimeCircle" />
+
+                        <TextView
+                            android:id="@+id/freeTimeDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/red_hat_display_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="@+id/freeTimeTitle"
+                            app:layout_constraintTop_toBottomOf="@+id/freeTimeTitle" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/dashboardDivider"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="#3D000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dashboardLayout">
+
+            </View>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/freeTimeUsageLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dashboardDivider">
+
+                <TextView
+                    android:id="@+id/freeTimeUsageLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/euclid_circular_b_bold"
+                    android:text="Free-time Usage"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/usedTimeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="Used"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/freeTimeUsageLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/freeTimeUsageLabel" />
+
+                <TextView
+                    android:id="@+id/usedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:textColor="#0C8722"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@+id/usedTimeLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/usedTimeLabel" />
+
+                <TextView
+                    android:id="@+id/maxTimeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Max"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/freeTimeUsageLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/freeTimeUsageLabel" />
+
+                <TextView
+                    android:id="@+id/maxTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@+id/maxTimeLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/maxTimeLabel" />
+
+                <ProgressBar
+                    android:id="@+id/freeTimeUsageProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/background_progress_bar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/usedTime" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/extendFreeTimeButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="Extend Free-time"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/free_time_usage_text_color"
+                    app:cornerRadius="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/freeTimeUsageProgressBar"
+                    app:layout_constraintStart_toStartOf="@+id/freeTimeUsageProgressBar"
+                    app:layout_constraintTop_toBottomOf="@+id/freeTimeUsageProgressBar"
+                    app:rippleColor="@color/free_time_usage_ripple_color"
+                    app:strokeColor="@color/free_time_usage_text_color"
+                    app:strokeWidth="2dp" />
+
+                <TextView
+                    android:id="@+id/changeTimeRestrictionsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="Change Time Restrictions"
+                    android:textColor="@color/free_time_usage_text_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/extendFreeTimeButton"
+                    app:layout_constraintStart_toStartOf="@+id/extendFreeTimeButton"
+                    app:layout_constraintTop_toBottomOf="@+id/extendFreeTimeButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/freeTimeUsageDivider"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="#3D000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/freeTimeUsageLayout">
+
+            </View>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/devicesLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/freeTimeUsageDivider">
+
+                <TextView
+                    android:id="@+id/devicesLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:text="By Devices"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iconSmartPhone"
+                    android:layout_width="28dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/icon_smart_phone"
+                    app:layout_constraintEnd_toStartOf="@+id/devicesLabel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/devicesLabel" />
+
+                <TextView
+                    android:id="@+id/adisPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:text="Adi's phone"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/devicesLabel"
+                    app:layout_constraintTop_toTopOf="@+id/iconSmartPhone" />
+
+                <TextView
+                    android:id="@+id/adisPhoneUsage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:textColor="@color/free_time_usage_text_color"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/adisPhone"
+                    app:layout_constraintTop_toBottomOf="@+id/adisPhone" />
+
+                <ImageView
+                    android:id="@+id/iconLaptopComputer"
+                    android:layout_width="82dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/icon_laptop_computer"
+                    app:layout_constraintEnd_toEndOf="@+id/iconSmartPhone"
+                    app:layout_constraintStart_toStartOf="@+id/iconSmartPhone"
+                    app:layout_constraintTop_toBottomOf="@+id/iconSmartPhone" />
+
+                <TextView
+                    android:id="@+id/adisLaptop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:text="Adi's laptop"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/devicesLabel"
+                    app:layout_constraintTop_toTopOf="@+id/iconLaptopComputer" />
+
+                <TextView
+                    android:id="@+id/adisLaptopUsage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:textColor="@color/free_time_usage_text_color"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/adisLaptop"
+                    app:layout_constraintTop_toBottomOf="@+id/adisLaptop" />
+
+                <TextView
+                    android:id="@+id/seeAllDevicesButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="42dp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="See All Devices"
+                    android:textColor="@color/free_time_usage_text_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iconLaptopComputer" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
