@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import com.binishmatheww.parenting.*
+import com.binishmatheww.parenting.ParentalControl
+import com.binishmatheww.parenting.R
 import com.binishmatheww.parenting.databinding.FragmentDashboardBinding
+import com.binishmatheww.parenting.stringToJsonObject
+import com.binishmatheww.parenting.toMinutes
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -28,7 +30,6 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.JsonArray
 import org.json.JSONArray
 
 
@@ -47,11 +48,6 @@ class DashboardFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-    }
 
     override fun onResume() {
         super.onResume()
@@ -66,7 +62,7 @@ class DashboardFragment : Fragment() {
         layout.freeTimeUsageLayout.alpha = 0f
         layout.devicesLayout.alpha = 0f
 
-        context?.let { context ->
+        context?.let {
 
             /*
             val pieChartLegend = PieChartLegend(context)
@@ -113,9 +109,9 @@ class DashboardFragment : Fragment() {
 
                         val deviceUsage = response.get("deviceUsage").asJsonObject
 
-                        var freeTimeMaxUsage = response.get("freeTimeMaxUsage").asInt
+                        val freeTimeMaxUsage = response.get("freeTimeMaxUsage").asInt
 
-                        var freeTime = deviceUsage.get("freeTime").asJsonObject.get("mobile").asInt +
+                        val freeTime = deviceUsage.get("freeTime").asJsonObject.get("mobile").asInt +
                                 deviceUsage.get("freeTime").asJsonObject.get("laptop").asInt
 
 
